@@ -28,7 +28,7 @@ namespace Evoweb\SfRegister\ViewHelpers\Form;
  * Viewhelper to render a selectbox with values
  * of static info tables country zones
  * <code title="Usage">
- * {namespace register=\\Evoweb\\SfRegister\\ViewHelpers}
+ * {namespace register=\Evoweb\SfRegister\ViewHelpers}
  * <register:form.SelectStaticLanguage name="language"/>
  * </code>
  */

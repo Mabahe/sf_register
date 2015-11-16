@@ -28,7 +28,7 @@ namespace Evoweb\SfRegister\ViewHelpers\Form;
  * Viewhelper to render a selectbox with values
  * in given steps from start to end value
  * <code title="Usage">
- * {namespace register=\\Evoweb\\SfRegister\\ViewHelpers}
+ * {namespace register=\Evoweb\SfRegister\ViewHelpers}
  * <register:form.rangeSelect property="day" start="1" end="31"/>
  * </code>
  */

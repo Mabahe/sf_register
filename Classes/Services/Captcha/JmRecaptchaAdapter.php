@@ -66,7 +66,7 @@ class JmRecaptchaAdapter extends AbstractAdapter
      */
     public function render()
     {
-        $this->objectManager->get('Evoweb\\SfRegister\\Services\\Session')->remove('captchaWasValidPreviously');
+        $this->objectManager->get(\Evoweb\SfRegister\Services\Session::class)->remove('captchaWasValidPreviously');
 
         if ($this->captcha !== null) {
             /** @noinspection PhpUndefinedMethodInspection */
@@ -93,7 +93,7 @@ class JmRecaptchaAdapter extends AbstractAdapter
     {
         $validCaptcha = true;
 
-        $session = $this->objectManager->get('Evoweb\\SfRegister\\Services\\Session');
+        $session = $this->objectManager->get(\Evoweb\SfRegister\Services\Session::class);
         $captchaWasValidPreviously = $session->get('captchaWasValidPreviously');
         if ($this->captcha !== null && $captchaWasValidPreviously !== true) {
             $_POST['recaptcha_response_field'] = $value;

@@ -353,7 +353,7 @@ class Mail implements \TYPO3\CMS\Core\SingletonInterface
     protected function sendEmail($user, array $recipient, $typeOfEmail, $subject, $bodyHtml, $bodyPlain = '')
     {
         /** @var $mail \TYPO3\CMS\Core\Mail\MailMessage */
-        $mail = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+        $mail = $this->objectManager->get(\TYPO3\CMS\Core\Mail\MailMessage::class);
         $mail->setTo($recipient)
             ->setFrom(array($this->settings[$typeOfEmail]['fromEmail'] => $this->settings[$typeOfEmail]['fromName']))
             ->setSubject($subject);
@@ -479,7 +479,7 @@ class Mail implements \TYPO3\CMS\Core\SingletonInterface
         $htmlBody = '';
         if ($filePath) {
             /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
-            $view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+            $view = $this->objectManager->get(\TYPO3\CMS\Fluid\View\StandaloneView::class);
             $view->setTemplatePathAndFilename($filePath);
             $view->setLayoutRootPaths(array($this->getAbsoluteLayoutRootPath()));
             $view->assignMultiple($variables);
@@ -515,7 +515,7 @@ class Mail implements \TYPO3\CMS\Core\SingletonInterface
         $plainBody = '';
         if ($filePath) {
             /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */
-            $view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+            $view = $this->objectManager->get(\TYPO3\CMS\Fluid\View\StandaloneView::class);
             $view->setTemplatePathAndFilename($filePath);
             $view->setLayoutRootPaths($this->getAbsoluteLayoutRootPath());
             $view->assignMultiple($variables);

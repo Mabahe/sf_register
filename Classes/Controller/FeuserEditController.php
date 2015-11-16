@@ -55,8 +55,8 @@ class FeuserEditController extends FeuserController
 
             if ($userData['uid'] == $GLOBALS['TSFE']->fe_user->user['uid']) {
                 /** @var \TYPO3\CMS\Extbase\Property\PropertyMapper $propertyMapper */
-                $propertyMapper = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Property\\PropertyMapper');
-                $user = $propertyMapper->convert($userData, 'Evoweb\\SfRegister\\Domain\\Model\\FrontendUser');
+                $propertyMapper = $this->objectManager->get(\TYPO3\CMS\Extbase\Property\PropertyMapper::class);
+                $user = $propertyMapper->convert($userData, \Evoweb\SfRegister\Domain\Model\FrontendUser::class);
                 $user = $this->moveTempFile($user);
             }
         }
@@ -144,7 +144,7 @@ class FeuserEditController extends FeuserController
 
         $this->userRepository->update($user);
 
-        $this->objectManager->get('Evoweb\\SfRegister\\Services\\Session')
+        $this->objectManager->get(\Evoweb\SfRegister\Services\Session::class)
             ->remove('captchaWasValidPreviously');
 
         if ($this->settings['forwardToEditAfterSave']) {

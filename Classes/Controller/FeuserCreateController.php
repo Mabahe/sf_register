@@ -57,12 +57,12 @@ class FeuserCreateController extends FeuserController
             }
 
             /** @var \TYPO3\CMS\Extbase\Property\PropertyMapper $propertyMapper */
-            $propertyMapper = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Property\\PropertyMapper');
-            $user = $propertyMapper->convert($userData, 'Evoweb\\SfRegister\\Domain\\Model\\FrontendUser');
+            $propertyMapper = $this->objectManager->get(\TYPO3\CMS\Extbase\Property\PropertyMapper::class);
+            $user = $propertyMapper->convert($userData, \Evoweb\SfRegister\Domain\Model\FrontendUser::class);
             $user = $this->moveTempFile($user);
         } else {
             /** @var \Evoweb\SfRegister\Domain\Model\FrontendUser $user */
-            $user = $this->objectManager->get('Evoweb\\SfRegister\\Domain\\Model\\FrontendUser');
+            $user = $this->objectManager->get(\Evoweb\SfRegister\Domain\Model\FrontendUser::class);
         }
 
         if ($originalRequest !== null && $originalRequest->hasArgument('temporaryImage')) {
@@ -153,7 +153,7 @@ class FeuserCreateController extends FeuserController
         $this->userRepository->update($user);
         $this->persistAll();
 
-        $this->objectManager->get('Evoweb\\SfRegister\\Services\\Session')->remove('captchaWasValidPreviously');
+        $this->objectManager->get(\Evoweb\SfRegister\Services\Session::class)->remove('captchaWasValidPreviously');
 
         if ($this->settings['autologinPostRegistration']) {
             $this->autoLogin($user);
@@ -174,10 +174,10 @@ class FeuserCreateController extends FeuserController
     protected function initializeConfirmAction()
     {
         $this->userRepository = $this->objectManager->get(
-            'Evoweb\\SfRegister\\Domain\\Repository\\FrontendUserRepository'
+            \Evoweb\SfRegister\Domain\Repository\FrontendUserRepository::class
         );
         $this->userGroupRepository = $this->objectManager->get(
-            'TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserGroupRepository'
+            \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository::class
         );
     }
 

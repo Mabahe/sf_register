@@ -45,7 +45,7 @@ class FrontendUserConverter extends \TYPO3\CMS\Extbase\Property\TypeConverter\Ab
     /**
      * @var string
      */
-    protected $targetType = 'Evoweb\\SfRegister\\Domain\\Model\\FrontendUser';
+    protected $targetType = \Evoweb\SfRegister\Domain\Model\FrontendUser::class;
 
     /**
      * Actually convert from $source to $targetType, taking into account the fully

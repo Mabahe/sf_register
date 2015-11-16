@@ -194,6 +194,6 @@ class Ajax
 
 if (\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('eID')) {
     /** @var \Evoweb\SfRegister\Api\Ajax $ajax */
-    $ajax = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Evoweb\\SfRegister\\Api\\Ajax');
+    $ajax = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\Evoweb\SfRegister\Api\Ajax::class);
     $ajax->dispatch();
 }

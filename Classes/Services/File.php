@@ -183,7 +183,7 @@ class File implements \TYPO3\CMS\Core\SingletonInterface
      */
     protected function addError($message, $code)
     {
-        $this->errors[] = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\Error', $message, $code);
+        $this->errors[] = $this->objectManager->get(\TYPO3\CMS\Extbase\Validation\Error::class, $message, $code);
     }
 
     /**
@@ -326,7 +326,7 @@ class File implements \TYPO3\CMS\Core\SingletonInterface
 
         if (count($fileData)) {
             /** @var $basicFileFunctions \TYPO3\CMS\Core\Utility\File\BasicFileUtility */
-            $basicFileFunctions = $this->objectManager->get('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility');
+            $basicFileFunctions = $this->objectManager->get(\TYPO3\CMS\Core\Utility\File\BasicFileUtility::class);
 
             $filename = $basicFileFunctions->cleanFileName($fileData['filename']);
             $uploadFolder = \TYPO3\CMS\Core\Utility\PathUtility::getCanonicalPath(PATH_site . $this->tempFolder);

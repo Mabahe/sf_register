@@ -97,7 +97,7 @@ class FeuserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function initializeAction()
     {
-        $this->fileService = $this->objectManager->get('Evoweb\\SfRegister\\Services\\File');
+        $this->fileService = $this->objectManager->get(\Evoweb\SfRegister\Services\File::class);
 
         if ($this->settings['processInitializeActionSignal']) {
             $this->signalSlotDispatcher->dispatch(__CLASS__, 'initializeAction', array(
@@ -280,7 +280,7 @@ class FeuserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function persistAll()
     {
-        $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')
+        $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class)
             ->persistAll();
     }
 
@@ -309,7 +309,7 @@ class FeuserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected function sendEmails($user, $type)
     {
         /** @var $mailService \Evoweb\SfRegister\Services\Mail */
-        $mailService = $this->objectManager->get('Evoweb\\SfRegister\\Services\\Mail');
+        $mailService = $this->objectManager->get(\Evoweb\SfRegister\Services\Mail::class);
 
         if ($this->isNotifyAdmin($type)) {
             $user = $mailService->sendAdminNotification($user, $type);
@@ -467,7 +467,7 @@ class FeuserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     protected function autoLogin(\Evoweb\SfRegister\Domain\Model\FrontendUser $user)
     {
-        $this->objectManager->get('Evoweb\\SfRegister\\Services\\Login')
+        $this->objectManager->get(\Evoweb\SfRegister\Services\Login::class)
             ->loginUserById($user->getUid());
     }
 

@@ -63,7 +63,7 @@ class FeuserPasswordController extends FeuserController
 
             $this->userRepository->update($user);
 
-            $this->objectManager->get('Evoweb\\SfRegister\\Services\\Session')
+            $this->objectManager->get(\Evoweb\SfRegister\Services\Session::class)
                 ->remove('captchaWasValidPreviously');
         }
     }

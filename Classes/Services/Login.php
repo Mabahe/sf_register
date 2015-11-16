@@ -89,7 +89,7 @@ class Login implements \TYPO3\CMS\Core\SingletonInterface
         /**
          * @var $feUser \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication
          */
-        $feUser = $this->objectManager->get('TYPO3\\CMS\\Frontend\\Authentication\\FrontendUserAuthentication');
+        $feUser = $this->objectManager->get(\TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication::class);
 
         $feUser->lockIP = $GLOBALS['TYPO3_CONF_VARS']['FE']['lockIP'];
         $feUser->checkPid = $GLOBALS['TYPO3_CONF_VARS']['FE']['checkFeUserPid'];
