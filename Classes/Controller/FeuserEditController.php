@@ -129,7 +129,7 @@ class FeuserEditController extends FeuserController
 
             // Now remove the fresh fetched and add the updated one to make it known again
             $session->unregisterObject($userBeforeEdit);
-            $session->registerObject($user);
+            $session->registerObject($user, $user->getUid());
 
             $user->setEmailNew($user->getEmail());
             $user->setEmail($userBeforeEdit->getEmail());
