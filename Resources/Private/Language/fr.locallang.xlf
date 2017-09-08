@@ -397,7 +397,7 @@
 			</trans-unit>
 			<trans-unit id="error_passwordagain_notequal" xml:space="preserve" approved="yes">
 				<source>Password fields are not equal</source>
-				<target>Les mots de passe ne sont pas égaux/target>
+				<target>Les mots de passe ne sont pas égaux</target>
 			</trans-unit>
 			<trans-unit id="error_notunique_local" xml:space="preserve" approved="yes">
 				<source>The %1$s is not unique</source>
