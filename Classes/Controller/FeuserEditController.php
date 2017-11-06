@@ -116,6 +116,7 @@ class FeuserEditController extends FeuserController
         //$user = $this->moveTempFile($user);
         //$user = $this->moveImageFile($user);
         //$user->prepareDateOfBirth();
+        $emailChanged = false;
 
         if (($this->isNotifyAdmin('PostEditSave') || $this->isNotifyUser('PostEditSave'))
             && ($this->settings['confirmEmailPostEdit'] || $this->settings['acceptEmailPostEdit'])
@@ -131,8 +132,15 @@ class FeuserEditController extends FeuserController
             $session->unregisterObject($userBeforeEdit);
             $session->registerObject($user, $user->getUid());
 
-            $user->setEmailNew($user->getEmail());
-            $user->setEmail($userBeforeEdit->getEmail());
+            $newEmail = $user->getEmail();
+            $currentEmail = $userBeforeEdit->getEmail();
+
+            if ($newEmail !== $currentEmail) {
+                $emailChanged = true;
+            }
+
+            $user->setEmailNew($newEmail);
+            $user->setEmail($currentEmail);
         } elseif ($this->settings['useEmailAddressAsUsername']) {
             $user->setUsername($user->getEmail());
         }
@@ -143,7 +151,17 @@ class FeuserEditController extends FeuserController
             array('user' => &$user, 'settings' => $this->settings)
         );
 
-        $user = $this->sendEmails($user, 'PostEditSave');
+        $type = 'PostEditSave';
+
+        // prevent mails when email not changed and flag is true
+        if (!$emailChanged && $this->isNotifyAdmin($type) && $this->settings['notifyAdmin' . $type . 'OnlyOnMailChange']) {
+            $this->settings['notifyAdmin' . $type] = 0;
+        }
+        if (!$emailChanged && $this->isNotifyUser($type) && $this->settings['notifyUser' . $type . 'OnlyOnMailChange']) {
+            $this->settings['notifyUser' . $type] = 0;
+        }
+
+        $user = $this->sendEmails($user, $type);
 
         $this->userRepository->update($user);
 
@@ -155,6 +173,7 @@ class FeuserEditController extends FeuserController
         }
 
         $this->view->assign('user', $user);
+        $this->view->assign('emailChanged', $emailChanged);
     }
 
     /**
